@@ -1,0 +1,10 @@
+<div class="post-preview">
+    <a href="<%- config.root %><%- item.path %>">
+        <h2 class="post-title">
+            <%- item.title || "不想写题目" %>
+        </h2>
+        <div class="post-date">
+            <%- item.date.format(theme.date_format) %>
+        </div>
+    </a>
+</div>

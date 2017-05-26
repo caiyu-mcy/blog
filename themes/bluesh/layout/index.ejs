@@ -1,0 +1,14 @@
+<a class="nav-back" href="/">
+    <h1 class="title">所以。<span class="so">so</span> <span class="cursor"></span></h1>
+</a>
+
+<!-- Main Content -->
+<section class="intro">
+    <div class="container">
+        <% page.posts.each(function(item){ %>
+            <%- partial('_partial/article-index', {item: item}) %>
+        <% }); %>
+        <!-- Pagination -->
+        <%- partial('_partial/pagination') %>
+    </div>
+</section>

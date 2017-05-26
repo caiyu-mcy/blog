@@ -1,0 +1,15 @@
+rss: /atom.xml
+
+#Date Format
+date_format: YYYY-MM-DD HH:mm
+
+# Comment.
+comments:
+  # Disqus comment
+  disqus_shortname: coffeexu
+
+
+# Google Analytics Tracking ID
+google_analytics: UA-97572000-1
+
+favicon: /blog/images/favicon.png
