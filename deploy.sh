@@ -1,10 +1,10 @@
-hexo deploy
 git add .
 git commit -m 'update source'
 git push origin master:source
 
-hexo generate
+# hexo generate
 # cp -R public/* .deploy_git
+hexo deploy
 cd .deploy_git
 git push git@github.com:bluesh/blog.git HEAD:gh-pages
 # cp -R public/* .deploy_git
