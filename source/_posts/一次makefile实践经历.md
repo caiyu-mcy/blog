@@ -1,7 +1,7 @@
 ---
 title: 一次makefile实践经历
 date: 2017-05-19 20:25:17
-tags: 哈喽！女汉纸
+categories: 哈喽！女汉纸
 ---
 
 今天是身份证上的生日(but so what)
