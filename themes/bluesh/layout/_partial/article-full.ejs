@@ -13,6 +13,12 @@
             <div class="post-meta">
                 <div class="post-date">
                     <%- item.date.format(theme.date_format) %>
+
+                    <% if (theme.leancloud_visitors.enable) { %>
+                        &nbsp; | &nbsp;
+                        👀&nbsp;
+                        <span id="<%- url_for(item.path) %>" class="leancloud_visitors" data-title="<%= item.title %>"></span>
+                    <% } %>
                 </div>
                 <div class="post-tags">
                     <% if (item.tags && item.tags.length){ %>
