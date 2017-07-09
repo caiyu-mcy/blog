@@ -1,9 +1,7 @@
 ---
-layout: post
-title: "图片的map锚点"
+title: 图片的map锚点
 date: 2014-01-04 13:12
-comments: true
-categories: 哈喽！女汉纸
+tags: 即使要我跟你再耗个十年
 ---
 tags: `images` `map`
 <br>

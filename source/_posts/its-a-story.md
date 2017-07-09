@@ -1,9 +1,7 @@
 ---
-layout: post
-title: "我本来想说一个故事"
+title: 我本来想说一个故事
 date: 2013-11-06 20:55
-comments: true
-categories: 礼拜三
+tags: 来来来喝完这杯还有三杯
 ---
 000
 

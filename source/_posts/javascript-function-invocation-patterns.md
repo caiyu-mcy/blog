@@ -1,9 +1,7 @@
 ---
-layout: post
-title: "JavaScript: 函数调用模式"
+title: JavaScript: 函数调用模式
 date: 2013-10-15 19:38
-comments: true
-categories: 哈喽！女汉纸
+tags: 即使要我跟你再耗个十年
 ---
 tags: `JavaScript` `this` `翻译`
 <br>

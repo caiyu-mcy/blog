@@ -1,9 +1,10 @@
 ---
 layout: post
-title: "爱整理的都是好姑凉"
+title: 爱整理的都是好姑凉
 date: 2013-10-15 20:20
-comments: true
-categories: 哈喽！女汉纸
+tags:
+- 即使要我跟你再耗个十年
+- bluesh
 ---
 tags: `手册`
 <br>
@@ -15,7 +16,7 @@ tags: `手册`
 	rake deploy
 
 	git add .
-	git commit -m "Some comment here." 
+	git commit -m "Some comment here."
 	git push origin source
 ```
 ###先睹为快

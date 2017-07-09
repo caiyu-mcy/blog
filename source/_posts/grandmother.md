@@ -1,9 +1,7 @@
 ---
-layout: post
-title: "外婆"
+title: 外婆
 date: 2013-11-12 20:03
-comments: true
-categories: 礼拜三
+tags: 来来来喝完这杯还有三杯
 ---
 
 

@@ -1,9 +1,7 @@
 ---
-layout: post
-title: "周！杰！伦！"
+title: 周！杰！伦！
 date: 2013-11-17 19:17
-comments: true
-categories: 来来来喝完这杯还有三杯
+tags: 来来来喝完这杯还有三杯
 ---
 tags: `梦想清单`
 <br>

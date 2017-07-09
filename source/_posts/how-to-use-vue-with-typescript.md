@@ -1,7 +1,7 @@
 ---
 title: 如何在 Vue 中使用 TypeScript
 date: 2017-06-15 22:59:19
-tags: 哈喽！女汉纸
+tags: 即使要我跟你再耗个十年
 ---
 首先你必须了解了一些 TypeScript Vue 和 webpack
 

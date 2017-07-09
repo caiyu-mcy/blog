@@ -1,9 +1,7 @@
 ---
-layout: post
-title: "IE inherited margin bug: form elements and hasLayout"
+title: IE inherited margin bug: form elements and hasLayout
 date: 2014-01-04 13:15
-comments: true
-categories: 哈喽！女汉纸
+tags: 即使要我跟你再耗个十年
 ---
 tags: `IE` `表单` `兼容`
 <br>

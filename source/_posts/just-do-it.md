@@ -1,9 +1,7 @@
 ---
-layout: post
-title: "去做，才有困难可言"
+title: 去做，才有困难可言
 date: 2013-10-27 15:39
-comments: true
-categories: 来来来喝完这杯还有三杯
+tags: 来来来喝完这杯还有三杯
 ---
 tags: `梦想清单`
 <br>

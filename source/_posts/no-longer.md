@@ -1,9 +1,9 @@
 ---
-layout: post
-title: "好像没有然后了"
+title: 好像没有然后了
 date: 2013-10-12 21:51
-comments: true
-categories: 来来来喝完这杯还有三杯
+tags:
+- 来来来喝完这杯还有三杯
+- bluesh
 ---
 tags: `随便`
 <br>
@@ -14,12 +14,14 @@ tags: `随便`
 
 本来为了走向国际，或者学英语之类的，应该来个全英文的博客网站，至少导航和分类应该要国际化。但是，还是觉得文字对我有更多的吸引力。
 
-目前准备了三个目录：
+目前准备了几个目录：
 
-*  [哈喽！女汉纸](/blog/categories/ha-lou-!nu-yi-zhi/)
+*  技术－[即使要我跟你再耗个十年](/blog/tags/即使要我跟你再耗个十年/)
 
-*  [来来来喝完这杯还有三杯](/blog/categories/lai-lai-lai-he-wan-zhe-bei-huan-you-san-bei/)
+*  博客制作－[bluesh](/blog/tags/bluesh/)
 
-*  [2046](/blog/categories/2046/)
+*  自我碎碎念－[来来来喝完这杯还有三杯](/blog/tags/来来来喝完这杯还有三杯/)
 
-最后一个目录还没开始写。这么聪明的你们知道每个目录啥玩意嘛哈哈哈！
+*  游记，推荐分享－[无留半个字](/blog/tags/无留半个字/)
+
+*  [2046](/blog/tags/2046/)

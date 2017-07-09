@@ -1,9 +1,7 @@
 ---
-layout: post
-title: "JavaScript 的核心，闭包和作用域"
+title: JavaScript 的核心，闭包和作用域
 date: 2014-02-01 14:22
-comments: true
-categories: 哈喽！女汉纸
+tags: 即使要我跟你再耗个十年
 ---
 tags: `闭包` `作用域`
 <br>

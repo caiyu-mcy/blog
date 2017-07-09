@@ -1,9 +1,10 @@
 ---
 layout: post
-title: "等啊等等过了夏天"
+title: 等啊等等过了夏天 － 泰国游记
 date: 2014-03-01 12:13
-comments: true
-categories: 来来来喝完这杯还有三杯
+tags:
+- 来来来喝完这杯还有三杯
+- 无留半个字
 ---
 tags: `梦想清单` `旅行`
 <br>

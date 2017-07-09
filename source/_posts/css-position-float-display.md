@@ -1,9 +1,7 @@
 ---
-layout: post
-title: "讲一讲CSS的position/float/display"
+title: 讲一讲CSS的position/float/display
 date: 2013-10-30 21:51
-comments: true
-categories: 哈喽！女汉纸
+tags: 即使要我跟你再耗个十年
 ---
 tags: `CSS` `position` `float` `display`
 <br>

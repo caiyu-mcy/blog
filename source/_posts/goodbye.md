@@ -1,9 +1,7 @@
 ---
-layout: post
-title: "如果再重来，会不会稍显狼狈"
+title: 如果再重来，会不会稍显狼狈
 date: 2013-11-20 21:38
-comments: true
-categories: 来来来喝完这杯还有三杯
+tags: 来来来喝完这杯还有三杯
 ---
 
 数了数，花花跟我一起才一个月而已。<br>
