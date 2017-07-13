@@ -2,7 +2,7 @@
 title: 基于 LeanCloud 平台 为 Hexo 博客添加文章阅读量
 date: 2017-06-21 14:58:23
 tags:
-- 即使要我跟你再耗个十年
+- 假使要我跟你再耗个十年
 - bluesh
 ---
 我自己经常会到 Google Analytics 后台看网站的访问数据，最近特别关心文章的阅读量。

@@ -1,7 +1,7 @@
 ---
 title: 外边距合并的其中一种
 date: 2013-10-21 20:31
-tags: 即使要我跟你再耗个十年
+tags: 假使要我跟你再耗个十年
 ---
 tags: `外边距合并` `collapsing margins`
 <br>

@@ -1,7 +1,7 @@
 ---
 title: JavaScript: 函数调用模式
 date: 2013-10-15 19:38
-tags: 即使要我跟你再耗个十年
+tags: 假使要我跟你再耗个十年
 ---
 tags: `JavaScript` `this` `翻译`
 <br>

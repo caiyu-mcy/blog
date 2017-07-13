@@ -1,7 +1,7 @@
 ---
 title: 讲一讲CSS的position/float/display
 date: 2013-10-30 21:51
-tags: 即使要我跟你再耗个十年
+tags: 假使要我跟你再耗个十年
 ---
 tags: `CSS` `position` `float` `display`
 <br>

@@ -1,7 +1,7 @@
 ---
 title: 图片的map锚点
 date: 2014-01-04 13:12
-tags: 即使要我跟你再耗个十年
+tags: 假使要我跟你再耗个十年
 ---
 tags: `images` `map`
 <br>
