@@ -2,7 +2,7 @@ git add .
 git commit -m 'update source'
 git push origin master:source
 
-# hexo generate
+hexo generate
 # cp -R public/* .deploy_git
 hexo deploy
 cd .deploy_git
