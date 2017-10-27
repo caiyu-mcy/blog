@@ -6,8 +6,8 @@ date_format: YYYY-MM-DD HH:mm
 # Comment.
 comments:
   # Disqus comment
-  disqus_shortname: coffeexu
-
+  # disqus_shortname: coffeexu
+  youyan_uid: 2147554
 
 # Google Analytics Tracking ID
 google_analytics: UA-97572000-1

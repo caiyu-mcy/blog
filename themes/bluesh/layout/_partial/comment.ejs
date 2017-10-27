@@ -13,3 +13,18 @@
   })();
 </script>
 <% } %>
+
+<!-- youyan Comments -->
+<% if (theme.comments && theme.comments.youyan_uid){ %>
+<div id="uyan_frame"></div>
+<script type="text/javascript">
+  var youyan_uid = '<%= theme.comments.youyan_uid %>';
+  (function() {
+      var uyan = document.createElement('script');
+      uyan.type = 'text/javascript';
+      uyan.async = true;
+      uyan.src = '//v2.uyan.cc/code/uyan.js?uid=' + youyan_uid;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(uyan);
+  })();
+</script>
+<% } %>
