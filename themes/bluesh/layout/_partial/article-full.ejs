@@ -15,8 +15,7 @@
                     <%- item.date.format(theme.date_format) %>
 
                     <% if (theme.leancloud_visitors.enable) { %>
-                        &nbsp; | &nbsp;
-                        🙈
+                        &nbsp; 🙈
                         <span id="<%- url_for(item.path) %>" class="leancloud_visitors" data-title="<%= item.title %>"></span>
                     <% } %>
                 </div>
