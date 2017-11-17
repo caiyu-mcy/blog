@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+    <!--Description-->
+    
+        <meta name="description" content="酱油前端许乐乐的博客 bluesh a Web Developer in Hangzhou Front-end 不有趣">
+    
+
+    
+      <link rel="icon" href="/blog/images/favicon.png">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="bluesh">
+    
+
+    <!-- Title -->
+    
+    <title>React 回头看学习指南 | 所以。</title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/style.css">
+
+    <!-- Custom Fonts -->
+    <script src="https://use.fontawesome.com/50e51aa126.js"></script>
+</head>
+
+
+<body>
+
+    <!-- Content -->
+    <section class="article-container">
+<!-- Back Home -->
+<a class="nav-back" href="/blog/">
+    <h1 class="title">所以。<span class="so">so</span> <span class="cursor"></span></h1>
+</a>
+
+
+<!-- Page Header -->
+<header class="intro-header">
+    <div class="container">
+        <div class="post-heading">
+            <h1>React 回头看学习指南</h1>
+
+
+            <!-- Meta -->
+            <div class="post-meta">
+                <div class="post-date">
+                    2017-07-16 20:35
+
+                    
+                        &nbsp; 🙈
+                        <span id="/blog/2017/07/16/react-handbook/" class="leancloud_visitors" data-title="React 回头看学习指南"></span>
+                    
+                </div>
+                <div class="post-tags">
+                    
+                        
+
+<a href="/blog/tags/假使要我跟你再耗个十年/">#假使要我跟你再耗个十年</a>
+
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <!-- Post Main Content -->
+        <div class="post-content">
+            <p>我，一个懒惰的前端工程师<br>只有在需要的时候才会去学习新技术（但是我学习能力强，上手快啊）<br>所以 React 起步相对晚<br>之前还跟面试官说，我觉得和 Vue 也差不多（划掉）嘛～<br>通过这几天资料的翻阅和查看，整理一下<br>是上手以后再回头看也有益处的资料</p>
+<ol>
+<li><p><a href="https://github.com/markerikson/react-redux-links/blob/master/react-architecture.md" target="_blank" rel="external">React Architecture and Best Practices</a></p>
+</li>
+<li><p><a href="https://github.com/sorrycc/blog/issues/1" target="_blank" rel="external">React + Redux 最佳实践</a></p>
+</li>
+<li><p><a href="https://github.com/sorrycc/react-redux-boilerplate" target="_blank" rel="external">react-redux样板</a></p>
+</li>
+<li><p><a href="http://cn.redux.js.org/index.html" target="_blank" rel="external">Redux 中文文档</a></p>
+</li>
+<li><p><a href="https://www.zhihu.com/question/41312576" target="_blank" rel="external">理解 React，但不理解 Redux，该如何通俗易懂的理解 Redux？</a></p>
+</li>
+<li><p><a href="https://www.w3ctech.com/topic/1561" target="_blank" rel="external">深入浅出 - Redux</a></p>
+</li>
+<li><p><a href="https://reacttraining.com/react-router/web/guides/philosophy" target="_blank" rel="external">React Router</a></p>
+</li>
+<li><p><a href="http://leonshi.com/redux-saga-in-chinese/index.html" target="_blank" rel="external">Redux-saga 中文文档</a></p>
+</li>
+<li><p><a href="http://www.ruanyifeng.com/blog/2015/05/async.html" target="_blank" rel="external">async 函数的含义和用法</a></p>
+</li>
+<li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch" target="_blank" rel="external">Fetch</a></p>
+</li>
+<li><p><a href="https://github.com/reactjs/reselect#connecting-a-selector-to-the-redux-store" target="_blank" rel="external">reselect</a></p>
+</li>
+</ol>
+<p>还在积累实际项目过程中，所以没有经验之谈，只是就选型这件事啰嗦两句<br>团队在 Vue 和 React 之间摇摆不定，我也一度想要放弃高门槛的 React<br>但是本着既然没接触过 React 学会了之后也算掌握三剑客（Angular Vue React）找工作更容易的私心坚持了下来</p>
+<p>React 和其他框架不同之处在于它不是一个框架<br>它的思想理念在我看来仿佛就是一套类似的浏览器，对树结点的解析和渲染。<br>搭配上一系列的周边（redux，router），才能称之为一个框架。</p>
+<p>特征：<strong>单数据流</strong><br>Data 总是从顶层向下分发，只有子组件的回调在概念上可以回到state顶层影响Data。<br>这样我可以在一个state上管理所有的数据，而不至于将组件之间的交互线路搞得一团乱麻<br>在组件分离组合的时候更加高效</p>
+<p>Vue2.x也做了这样的改进，当然是基于Flux思想<br>我不造Vue被称为渐进式的框架，在 React 面前是渐进在哪里<br>在我看来，Vue就是作者基于Flux理念给的一套最佳实践，跟<a href="https://github.com/dvajs/dva" target="_blank" rel="external">dva</a>做的事情一样。<br>而所谓的最佳实践，其实是指符合大多数应用的开发模式<br>所以所谓的<strong>渐进</strong>，React 才是需要多少-&gt;学多少-&gt;用多少的一门语言</p>
+<p>以及我们团队的前端水平参差不齐，不希望给开发者太多的自由发挥<br>所以 TypeScript 成了不二之选<br>设计良好的 TypeScript 堪比一份规范文档，麻麻再也不用担心新手乱搞事情</p>
+<p>总而言之，适合自己的才是最好的</p>
+<p>p.s.我也刚接触 React 不到一个月，理解不深刻。片面之处请包涵，能指正就再好不过了</p>
+
+        </div>
+    </div>
+</article>
+
+</section>
+
+<div class="container">
+    <!-- footer money -->
+    <div class="money">
+        <button class="btn" onClick="getCoffee()">赏</button>
+        <div class="money-img">
+            <p>打赏咖啡☕️ 也请留个言🙋</p>
+            <small>
+                支付宝<br>
+                <img src="/blog/images/alipay.jpg">
+            </small>
+            <small>
+                微信<br>
+                <img src="/blog/images/weixin.jpg">
+            </small>
+        </div>
+    </div>
+
+
+    <!-- Comments -->
+    <!-- Disqus Comments -->
+
+
+<!-- youyan Comments -->
+
+<div id="uyan_frame"></div>
+<script type="text/javascript">
+  var youyan_uid = '2147554';
+  (function() {
+      var uyan = document.createElement('script');
+      uyan.type = 'text/javascript';
+      uyan.async = true;
+      uyan.src = '//v2.uyan.cc/code/uyan.js?uid=' + youyan_uid;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(uyan);
+  })();
+</script>
+
+
+</div>
+<script type="text/javascript">
+    var showImg = false;
+    var $img = document.querySelectorAll('.money-img')[0];
+    function getCoffee() {
+        ga('send', 'event', 'Button', 'getCoffee');
+        if(showImg) {
+            $img.className = 'money-img';
+            showImg = false;
+        } else {
+            $img.className = '';
+            showImg = true;
+        }
+
+    }
+</script>
+
+
+    <!-- Scripts -->
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<footer class="container site-footer">
+    <hr/>
+    © <script type="text/javascript">
+      document.write(new Date().getFullYear())
+    </script> bluesh ️🙋
+    &nbsp;&nbsp;&nbsp;
+    ｜
+    &nbsp;&nbsp;&nbsp;
+    <span id="busuanzi_container_page_pv">
+      🙈 <span id="busuanzi_value_site_pv"></span>
+    </span>
+</footer>
+
+    <!-- Google Analytics -->
+    
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("hhakCm2gE0aesc9v0pYhIVtS-gzGzoHsz", "MgRyFO87HsCVgOefQucGhyqn");</script>
+<script>
+function showTime(Counter) {
+    var query = new AV.Query(Counter);
+    document.querySelectorAll(".leancloud_visitors").forEach(function(item) {
+        console.log(item.id);
+        var url = item.id.trim();
+        query.equalTo("url", url);
+        query.find({
+            success: function(results) {
+                if (results.length == 0) {
+                    document.getElementById(url).innerHTML = 0;
+                    return;
+                }
+                for (var i = 0; i < results.length; i++) {
+                    var object = results[i];
+                    document.getElementById(url).innerHTML = object.get('time');
+                }
+            },
+            error: function(object, error) {
+                console.log("Error: " + error.code + " " + error.message);
+            }
+        });
+
+    });
+}
+
+function addCount(Counter) {
+    var Counter = AV.Object.extend("Counter");
+    url = document.querySelector(".leancloud_visitors").id.trim();
+    title = document.querySelector(".leancloud_visitors").getAttribute('data-title').trim();
+    var query = new AV.Query(Counter);
+    query.equalTo("url", url);
+    query.find({
+        success: function(results) {
+            if (results.length > 0) {
+                var counter = results[0];
+                counter.fetchWhenSave(true);
+                counter.increment("time");
+                counter.save(null, {
+                    success: function(counter) {
+                        document.getElementById(url).innerHTML = counter.get('time');
+                    },
+                    error: function(counter, error) {
+                        console.log('Failed to save Visitor num, with error message: ' + error.message);
+                    }
+                });
+            } else {
+                var newcounter = new Counter();
+                newcounter.set("title", title);
+                newcounter.set("url", url);
+                newcounter.set("time", 1);
+                newcounter.save(null, {
+                    success: function(newcounter) {
+                        console.log("newcounter.get('time')="+newcounter.get('time'));
+                        document.getElementById(url).innerHTML = newcounter.get('time');
+                    },
+                    error: function(newcounter, error) {
+                        console.log('Failed to create');
+                    }
+                });
+            }
+        },
+        error: function(error) {
+            console.log('Error:' + error.code + " " + error.message);
+        }
+    });
+}
+(function() {
+    var Counter = AV.Object.extend("Counter");
+    if (document.querySelectorAll('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+    } else if (document.querySelectorAll('.leancloud_visitors').length > 1) {
+        showTime(Counter);
+    }
+})();
+</script>
+
+
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97572000-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+    <!--Description-->
+    
+        <meta name="description" content="酱油前端许乐乐的博客 bluesh a Web Developer in Hangzhou Front-end 不有趣">
+    
+
+    
+      <link rel="icon" href="/blog/images/favicon.png">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="bluesh">
+    
+
+    <!-- Title -->
+    
+    <title>JavaScript 的核心，闭包和作用域 | 所以。</title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/style.css">
+
+    <!-- Custom Fonts -->
+    <script src="https://use.fontawesome.com/50e51aa126.js"></script>
+</head>
+
+
+<body>
+
+    <!-- Content -->
+    <section class="article-container">
+<!-- Back Home -->
+<a class="nav-back" href="/blog/">
+    <h1 class="title">所以。<span class="so">so</span> <span class="cursor"></span></h1>
+</a>
+
+
+<!-- Page Header -->
+<header class="intro-header">
+    <div class="container">
+        <div class="post-heading">
+            <h1>JavaScript 的核心，闭包和作用域</h1>
+
+
+            <!-- Meta -->
+            <div class="post-meta">
+                <div class="post-date">
+                    2014-02-01 14:22
+
+                    
+                        &nbsp; 🙈
+                        <span id="/blog/2014/02/01/soyouthinkyouknowjavascrip/" class="leancloud_visitors" data-title="JavaScript 的核心，闭包和作用域"></span>
+                    
+                </div>
+                <div class="post-tags">
+                    
+                        
+
+<a href="/blog/tags/假使要我跟你再耗个十年/">#假使要我跟你再耗个十年</a>
+
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <!-- Post Main Content -->
+        <div class="post-content">
+            <p>tags: <code>闭包</code> <code>作用域</code><br><br><br>这篇文章源于<a href="http://e.weibo.com/jobbole?ref=http%3A%2F%2Fweibo.com%2F1581992285%2Fprofile%3Ftopnav%3D1%26wvr%3D5%231354965989570" target="_blank" rel="external">@伯乐在线官方微博</a>一篇文章,<a href="http://blog.jobbole.com/30468/" target="_blank" rel="external">测试：你自认为理解了JavaScript？</a>,原文链接这篇文章有给出.主要下面五段小代码.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (!(<span class="string">"a"</span> <span class="keyword">in</span> <span class="built_in">window</span>)) &#123;</div><div class="line">    <span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line">alert(a);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">   <span class="keyword">var</span> a = <span class="number">1</span>,</div><div class="line">    b = <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">x</span>) </span>&#123;</div><div class="line">        x &amp;&amp; a(--x);</div><div class="line">    &#125;;</div><div class="line">alert(a);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">   <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">x</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> a;</div><div class="line">alert(a);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">   <span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params">x, y, a</span>) </span>&#123;</div><div class="line">    <span class="built_in">arguments</span>[<span class="number">2</span>] = <span class="number">10</span>;</div><div class="line">    alert(a);</div><div class="line">&#125;</div><div class="line">b(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">   <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    alert(<span class="keyword">this</span>);</div><div class="line">&#125;</div><div class="line">a.call(<span class="literal">null</span>);</div></pre></td></tr></table></figure>
+<p>参考答案(在chrome下弹出的结果,别的木有测试过):</p>
+<blockquote>
+<p>undefined,</p>
+<p>1,</p>
+<p>function a(x) { return x * 2; },</p>
+<p>10,</p>
+<p>window</p>
+</blockquote>
+<p>###下面是我的理解,以及用于理解而参考的一些资料:</p>
+<p>####题目1<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (!(<span class="string">"a"</span> <span class="keyword">in</span> <span class="built_in">window</span>)) &#123;</div><div class="line">    <span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line">alert(a);</div></pre></td></tr></table></figure></p>
+<ol>
+<li>变量申明先压入栈,即顶置变量申明.var a = 1;分为变量申明和变量赋值–var a; a = 1;执行的时候才进行赋值,所以”a” in window为true,没有对a赋值,所以弹出undefined,而非报错.</li>
+<li>我多嘴说一句,if是不区分作用域的.JS中并不是{}区分变量作用范围,而是函数.</li>
+</ol>
+<p>####题目2<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">   <span class="keyword">var</span> a = <span class="number">1</span>,</div><div class="line">    b = <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">x</span>) </span>&#123;</div><div class="line">        x &amp;&amp; a(--x);</div><div class="line">    &#125;;</div><div class="line">alert(a);</div></pre></td></tr></table></figure></p>
+<p>我认为很简单,a(x)只是一个代号而已,不是变量,所以跟var a = 1一点关系没有,它可以是b(x),c(x).弹出的a始终为1.</p>
+<p>如果把b改成a就不一样了.</p>
+<p>####题目3<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">   <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">x</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> a;</div><div class="line">alert(a);</div></pre></td></tr></table></figure></p>
+<p>函数申明,然后是变量申明.由于变量没有赋值,那a没有被覆盖.输出的是函数体.JS中变量是随时可以被改变,但这应该局限于执行的时候.</p>
+<p>####题目4<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">   <span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params">x, y, a</span>) </span>&#123;</div><div class="line">    <span class="built_in">arguments</span>[<span class="number">2</span>] = <span class="number">10</span>;</div><div class="line">    alert(a);</div><div class="line">&#125;</div><div class="line">b(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</div></pre></td></tr></table></figure></p>
+<p>arguments[2] = 10;就是改变a了,好像没有什么好解释了.</p>
+<p>####题目5<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">   <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    alert(<span class="keyword">this</span>);</div><div class="line">&#125;</div><div class="line">a.call(<span class="literal">null</span>);</div></pre></td></tr></table></figure></p>
+<p>这个翻译过上一次的<a href="http://coffeexu.github.io/blog/2013/10/15/javascript-function-invocation-patterns" target="_blank" rel="external">文章</a>,好像也很简单.this指向call函数第一个参数(这里为null).根据ECMAScript262规范规定：如果第一个参数传入的对象调用者是null或者undefined的话，call方法将把全局对象（也就是window）作为this的值.</p>
+<p>此处再总结下this.</p>
+<ol>
+<li><p>对于obj.fun()此类方法函数调用,哪个<code>对象实例</code>(obj)调用this所在的函数(fun),this指向那个<code>对象实例</code></p>
+</li>
+<li><p>对于函数调用,this指向全局对象.(其实可以看做上一种,是window对象的方法函数,全局对象调用,则指向全局对象)</p>
+</li>
+<li><p>对于构造函数调用,若该函数返回一个简单类型（number, string, boolean, null or undefined），忽略return值，返回this（指向新的对象）;如果该函数返回一个object实例（简单类型以外的任何类型），那么将返回该对象。</p>
+</li>
+<li><p>apply和call调用,this指向apply和call第一参数.即手动设置this的值.</p>
+</li>
+</ol>
+
+        </div>
+    </div>
+</article>
+
+</section>
+
+<div class="container">
+    <!-- footer money -->
+    <div class="money">
+        <button class="btn" onClick="getCoffee()">赏</button>
+        <div class="money-img">
+            <p>打赏咖啡☕️ 也请留个言🙋</p>
+            <small>
+                支付宝<br>
+                <img src="/blog/images/alipay.jpg">
+            </small>
+            <small>
+                微信<br>
+                <img src="/blog/images/weixin.jpg">
+            </small>
+        </div>
+    </div>
+
+
+    <!-- Comments -->
+    <!-- Disqus Comments -->
+
+
+<!-- youyan Comments -->
+
+<div id="uyan_frame"></div>
+<script type="text/javascript">
+  var youyan_uid = '2147554';
+  (function() {
+      var uyan = document.createElement('script');
+      uyan.type = 'text/javascript';
+      uyan.async = true;
+      uyan.src = '//v2.uyan.cc/code/uyan.js?uid=' + youyan_uid;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(uyan);
+  })();
+</script>
+
+
+</div>
+<script type="text/javascript">
+    var showImg = false;
+    var $img = document.querySelectorAll('.money-img')[0];
+    function getCoffee() {
+        ga('send', 'event', 'Button', 'getCoffee');
+        if(showImg) {
+            $img.className = 'money-img';
+            showImg = false;
+        } else {
+            $img.className = '';
+            showImg = true;
+        }
+
+    }
+</script>
+
+
+    <!-- Scripts -->
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<footer class="container site-footer">
+    <hr/>
+    © <script type="text/javascript">
+      document.write(new Date().getFullYear())
+    </script> bluesh ️🙋
+    &nbsp;&nbsp;&nbsp;
+    ｜
+    &nbsp;&nbsp;&nbsp;
+    <span id="busuanzi_container_page_pv">
+      🙈 <span id="busuanzi_value_site_pv"></span>
+    </span>
+</footer>
+
+    <!-- Google Analytics -->
+    
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("hhakCm2gE0aesc9v0pYhIVtS-gzGzoHsz", "MgRyFO87HsCVgOefQucGhyqn");</script>
+<script>
+function showTime(Counter) {
+    var query = new AV.Query(Counter);
+    document.querySelectorAll(".leancloud_visitors").forEach(function(item) {
+        console.log(item.id);
+        var url = item.id.trim();
+        query.equalTo("url", url);
+        query.find({
+            success: function(results) {
+                if (results.length == 0) {
+                    document.getElementById(url).innerHTML = 0;
+                    return;
+                }
+                for (var i = 0; i < results.length; i++) {
+                    var object = results[i];
+                    document.getElementById(url).innerHTML = object.get('time');
+                }
+            },
+            error: function(object, error) {
+                console.log("Error: " + error.code + " " + error.message);
+            }
+        });
+
+    });
+}
+
+function addCount(Counter) {
+    var Counter = AV.Object.extend("Counter");
+    url = document.querySelector(".leancloud_visitors").id.trim();
+    title = document.querySelector(".leancloud_visitors").getAttribute('data-title').trim();
+    var query = new AV.Query(Counter);
+    query.equalTo("url", url);
+    query.find({
+        success: function(results) {
+            if (results.length > 0) {
+                var counter = results[0];
+                counter.fetchWhenSave(true);
+                counter.increment("time");
+                counter.save(null, {
+                    success: function(counter) {
+                        document.getElementById(url).innerHTML = counter.get('time');
+                    },
+                    error: function(counter, error) {
+                        console.log('Failed to save Visitor num, with error message: ' + error.message);
+                    }
+                });
+            } else {
+                var newcounter = new Counter();
+                newcounter.set("title", title);
+                newcounter.set("url", url);
+                newcounter.set("time", 1);
+                newcounter.save(null, {
+                    success: function(newcounter) {
+                        console.log("newcounter.get('time')="+newcounter.get('time'));
+                        document.getElementById(url).innerHTML = newcounter.get('time');
+                    },
+                    error: function(newcounter, error) {
+                        console.log('Failed to create');
+                    }
+                });
+            }
+        },
+        error: function(error) {
+            console.log('Error:' + error.code + " " + error.message);
+        }
+    });
+}
+(function() {
+    var Counter = AV.Object.extend("Counter");
+    if (document.querySelectorAll('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+    } else if (document.querySelectorAll('.leancloud_visitors').length > 1) {
+        showTime(Counter);
+    }
+})();
+</script>
+
+
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97572000-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+</body>
+
+</html>

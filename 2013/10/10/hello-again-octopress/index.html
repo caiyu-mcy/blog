@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+    <!--Description-->
+    
+        <meta name="description" content="酱油前端许乐乐的博客 bluesh a Web Developer in Hangzhou Front-end 不有趣">
+    
+
+    
+      <link rel="icon" href="/blog/images/favicon.png">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="bluesh">
+    
+
+    <!-- Title -->
+    
+    <title>Hello Again!Octopress | 所以。</title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/style.css">
+
+    <!-- Custom Fonts -->
+    <script src="https://use.fontawesome.com/50e51aa126.js"></script>
+</head>
+
+
+<body>
+
+    <!-- Content -->
+    <section class="article-container">
+<!-- Back Home -->
+<a class="nav-back" href="/blog/">
+    <h1 class="title">所以。<span class="so">so</span> <span class="cursor"></span></h1>
+</a>
+
+
+<!-- Page Header -->
+<header class="intro-header">
+    <div class="container">
+        <div class="post-heading">
+            <h1>Hello Again!Octopress</h1>
+
+
+            <!-- Meta -->
+            <div class="post-meta">
+                <div class="post-date">
+                    2013-10-10 20:45
+
+                    
+                        &nbsp; 🙈
+                        <span id="/blog/2013/10/10/hello-again-octopress/" class="leancloud_visitors" data-title="Hello Again!Octopress"></span>
+                    
+                </div>
+                <div class="post-tags">
+                    
+                        
+
+<a href="/blog/tags/bluesh/">#bluesh</a> <a href="/blog/tags/假使要我跟你再耗个十年/">#假使要我跟你再耗个十年</a>
+
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <!-- Post Main Content -->
+        <div class="post-content">
+            <p>tags: <code>折腾</code> <code>octopress</code><br><br><br>这是第一次在mac上折腾Octopress, 对于我这种数码/IT杀手来说， 跟win一样麻烦。</p>
+<p>但成就感暴涨。尤其是<a href="http://summer222522.github.io/" target="_blank" rel="external">茂茂</a>赞助了各种美好的<a href="https://github.com/imathis/octopress" target="_blank" rel="external">主题</a>后，更加激动兴奋了！！</p>
+<p>哈哈，最喜欢折腾了！<code>折腾无止境</code>！</p>
+<p>但是折腾完之后，不知道可以坚持纪录多久的博客，求监督。</p>
+<p>接下来， 正式总结此次折腾遇到的麻烦。</p>
+<h3 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h3><ul>
+<li>安装ruby——鉴于我手欠，早先删除了1个多G的Xcode，整个安装过程异常困难。由于我一直想要尝试用<a href="https://github.com/kennethreitz/osx-gcc-installer" target="_blank" rel="external">戳工具</a>来代替这个鸡肋的Xcode。毕竟，任何无用却占据大量空间的东西都使我感到无比难过。我觉得哪天<code>猴年马月</code>一定要替换过来。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">curl -L https://get.rvm.io | bash -s stable --ruby</div><div class="line">rvm install 1.9.3</div><div class="line">rvm use 1.9.3</div><div class="line">rvm rubygems latest</div></pre></td></tr></table></figure>
+<ul>
+<li>安装Octopress——安装依赖时，<code>rbenv rehash</code>总是提示没有这个命令。所以安装依赖的过程重复了好几次。最后<code>重启</code>，开<code>GoAgentX</code>，成功了。至于哪个原因造成的，我也不十分明了，有同样问题的可以参考<a href="http://liuyix.org/blog/2013/mac-install-octopress/" target="_blank" rel="external">Mac上安装octopress</a>。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">git clone git://github.com/imathis/octopress.git octopress</div><div class="line">cd octopress    # If you use RVM, You&apos;ll be asked if you trust the .rvmrc file (say yes).</div><div class="line">ruby --version  # Should report Ruby 1.9.3</div><div class="line">gem install bundler</div><div class="line">rbenv rehash    # If you use rbenv, rehash to be able to run the bundle command</div><div class="line">bundle install</div><div class="line">rake install</div></pre></td></tr></table></figure>
+<ul>
+<li>将博客部署到GitHub上——像我这种MAC小白，以为在终端输入代码，没有红色就算是成功，第一步执行完居然默默地隐藏着设置用户名和邮箱，就是github帐户的用户名和密码。这里要提示一下，目前github已经修改为<code>username.github.io</code>，写<code>.com</code>有什么问题呢？因为输入url的提示已经更新了，我一开始仓库名写的是<code>coffeexu.girhub.com</code>，提示里是<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git@github.com:CoffeeXu/coffeexu.github.io.git</div><div class="line">or https://github.com/username/username.github.io.git</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>显然我个猪头一来没粘贴仓库右下角的URL码，二来直接就将用户名改成了自己的名字。所以一直提示没有这个仓库。</p>
+<p>如果使用的是ssh形式的url，需要得到当前笔记本用户的ssh，好像上面配置的时候会自动生产，如果需要手动添加的，戳<a href="https://help.github.com/articles/generating-ssh-keys" target="_blank" rel="external">Generating SSH Keys</a>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">rake setup_github_pages</div><div class="line">rake generate</div><div class="line">rake deploy</div></pre></td></tr></table></figure>
+<p>不知道你们是怎么样，反正我的<code>rake deploy</code>是没有提交到github上，大概是我前面重复太多遍了，一直提示有冲突。肿么办呢？强制合并，手动提交。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cd _deploy</div><div class="line">git add .</div><div class="line">git commit -m &apos;手动提交_deploy&apos;</div><div class="line">git push origin master</div></pre></td></tr></table></figure></p>
+<h3 id="DIY"><a href="#DIY" class="headerlink" title="DIY"></a>DIY</h3><ul>
+<li><code>rake preview</code>如果木有在线的markdown预览的话，这个是写文章和修改主题时好方法啊，开起来之后，即时修改即时刷新就可以预览效果。</li>
+<li>超链接。有没有发现我文章内的连接是打开新窗口的呢，markdown目前应该还不支持这种语法的，当然markdown是支持html。来自己动动手操作下。<a href="https://gist.github.com/azone/4523641" target="_blank" rel="external">戳</a></li>
+<li>目前的主题，自然是自己做过修改啦！自己动手，丰衣足食。哈哈。设置css样式基本在<code>sass/parts</code>目录下</li>
+<li>文本上下间距。嫌弃默认的间距实在是太大了，改了下。文件同上</li>
+<li>本来添加了加网和友言的评论，觉得太山寨了，档次一下就low了，删掉了。目前使用的addthis的分享和多说的评论。addthis不能分享到微信，缺陷。所以可能还是尽量使用国内的玩意儿更加符合国情吧。</li>
+<li>tips.可以的话还是尽量看官方文档。当然最方便的就是——不要搞了啊！！！</li>
+</ul>
+
+        </div>
+    </div>
+</article>
+
+</section>
+
+<div class="container">
+    <!-- footer money -->
+    <div class="money">
+        <button class="btn" onClick="getCoffee()">赏</button>
+        <div class="money-img">
+            <p>打赏咖啡☕️ 也请留个言🙋</p>
+            <small>
+                支付宝<br>
+                <img src="/blog/images/alipay.jpg">
+            </small>
+            <small>
+                微信<br>
+                <img src="/blog/images/weixin.jpg">
+            </small>
+        </div>
+    </div>
+
+
+    <!-- Comments -->
+    <!-- Disqus Comments -->
+
+
+<!-- youyan Comments -->
+
+<div id="uyan_frame"></div>
+<script type="text/javascript">
+  var youyan_uid = '2147554';
+  (function() {
+      var uyan = document.createElement('script');
+      uyan.type = 'text/javascript';
+      uyan.async = true;
+      uyan.src = '//v2.uyan.cc/code/uyan.js?uid=' + youyan_uid;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(uyan);
+  })();
+</script>
+
+
+</div>
+<script type="text/javascript">
+    var showImg = false;
+    var $img = document.querySelectorAll('.money-img')[0];
+    function getCoffee() {
+        ga('send', 'event', 'Button', 'getCoffee');
+        if(showImg) {
+            $img.className = 'money-img';
+            showImg = false;
+        } else {
+            $img.className = '';
+            showImg = true;
+        }
+
+    }
+</script>
+
+
+    <!-- Scripts -->
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<footer class="container site-footer">
+    <hr/>
+    © <script type="text/javascript">
+      document.write(new Date().getFullYear())
+    </script> bluesh ️🙋
+    &nbsp;&nbsp;&nbsp;
+    ｜
+    &nbsp;&nbsp;&nbsp;
+    <span id="busuanzi_container_page_pv">
+      🙈 <span id="busuanzi_value_site_pv"></span>
+    </span>
+</footer>
+
+    <!-- Google Analytics -->
+    
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("hhakCm2gE0aesc9v0pYhIVtS-gzGzoHsz", "MgRyFO87HsCVgOefQucGhyqn");</script>
+<script>
+function showTime(Counter) {
+    var query = new AV.Query(Counter);
+    document.querySelectorAll(".leancloud_visitors").forEach(function(item) {
+        console.log(item.id);
+        var url = item.id.trim();
+        query.equalTo("url", url);
+        query.find({
+            success: function(results) {
+                if (results.length == 0) {
+                    document.getElementById(url).innerHTML = 0;
+                    return;
+                }
+                for (var i = 0; i < results.length; i++) {
+                    var object = results[i];
+                    document.getElementById(url).innerHTML = object.get('time');
+                }
+            },
+            error: function(object, error) {
+                console.log("Error: " + error.code + " " + error.message);
+            }
+        });
+
+    });
+}
+
+function addCount(Counter) {
+    var Counter = AV.Object.extend("Counter");
+    url = document.querySelector(".leancloud_visitors").id.trim();
+    title = document.querySelector(".leancloud_visitors").getAttribute('data-title').trim();
+    var query = new AV.Query(Counter);
+    query.equalTo("url", url);
+    query.find({
+        success: function(results) {
+            if (results.length > 0) {
+                var counter = results[0];
+                counter.fetchWhenSave(true);
+                counter.increment("time");
+                counter.save(null, {
+                    success: function(counter) {
+                        document.getElementById(url).innerHTML = counter.get('time');
+                    },
+                    error: function(counter, error) {
+                        console.log('Failed to save Visitor num, with error message: ' + error.message);
+                    }
+                });
+            } else {
+                var newcounter = new Counter();
+                newcounter.set("title", title);
+                newcounter.set("url", url);
+                newcounter.set("time", 1);
+                newcounter.save(null, {
+                    success: function(newcounter) {
+                        console.log("newcounter.get('time')="+newcounter.get('time'));
+                        document.getElementById(url).innerHTML = newcounter.get('time');
+                    },
+                    error: function(newcounter, error) {
+                        console.log('Failed to create');
+                    }
+                });
+            }
+        },
+        error: function(error) {
+            console.log('Error:' + error.code + " " + error.message);
+        }
+    });
+}
+(function() {
+    var Counter = AV.Object.extend("Counter");
+    if (document.querySelectorAll('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+    } else if (document.querySelectorAll('.leancloud_visitors').length > 1) {
+        showTime(Counter);
+    }
+})();
+</script>
+
+
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97572000-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+</body>
+
+</html>

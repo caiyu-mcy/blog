@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+    <!--Description-->
+    
+        <meta name="description" content="酱油前端许乐乐的博客 bluesh a Web Developer in Hangzhou Front-end 不有趣">
+    
+
+    
+      <link rel="icon" href="/blog/images/favicon.png">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="bluesh">
+    
+
+    <!-- Title -->
+    
+    <title>如何在 Vue 中使用 TypeScript | 所以。</title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/style.css">
+
+    <!-- Custom Fonts -->
+    <script src="https://use.fontawesome.com/50e51aa126.js"></script>
+</head>
+
+
+<body>
+
+    <!-- Content -->
+    <section class="article-container">
+<!-- Back Home -->
+<a class="nav-back" href="/blog/">
+    <h1 class="title">所以。<span class="so">so</span> <span class="cursor"></span></h1>
+</a>
+
+
+<!-- Page Header -->
+<header class="intro-header">
+    <div class="container">
+        <div class="post-heading">
+            <h1>如何在 Vue 中使用 TypeScript</h1>
+
+
+            <!-- Meta -->
+            <div class="post-meta">
+                <div class="post-date">
+                    2017-06-15 22:59
+
+                    
+                        &nbsp; 🙈
+                        <span id="/blog/2017/06/15/how-to-use-vue-with-typescript/" class="leancloud_visitors" data-title="如何在 Vue 中使用 TypeScript"></span>
+                    
+                </div>
+                <div class="post-tags">
+                    
+                        
+
+<a href="/blog/tags/假使要我跟你再耗个十年/">#假使要我跟你再耗个十年</a>
+
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <!-- Post Main Content -->
+        <div class="post-content">
+            <p>首先你必须了解了一些 TypeScript Vue 和 webpack</p>
+<h3 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h3><p>新建一个如下目录结构的项目<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">vue-ts-simpleDemo/</div><div class="line">└─ src/</div><div class="line">   └─ components/</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mkdir vue-ts-simpleDemo</div><div class="line">cd vue-ts-simpleDemo</div><div class="line">mkdir src</div><div class="line">cd src</div><div class="line">mkdir components</div><div class="line">cd .. // 回到根目录准备</div></pre></td></tr></table></figure>
+<p>TypeScript 文件会在<code>src</code>目录下，经过编译 - webpack 打包，最后生成<code>dist</code>目录下的<code>bundle.js</code>文件。而我们的Vue组件都写在<code>src／components</code>文件夹中</p>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm init</div></pre></td></tr></table></figure>
+<p>这个操作会有一些配置项需要填写，看不懂或者不想写也没关系，一直enter就可以啦。</p>
+<p>它会帮我们生成一个<code>package.json</code>文件，需要的话随时可以修改。</p>
+<h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">npm install vue</div><div class="line"></div><div class="line">npm install --save-dev typescript webpack ts-loader css-loader vue-loader vue-template-compiler@2.2.1</div></pre></td></tr></table></figure>
+<h3 id="添加-TypeScript-配置文件"><a href="#添加-TypeScript-配置文件" class="headerlink" title="+添加 TypeScript 配置文件"></a>+添加 TypeScript 配置文件</h3><p>新建<code>tsconfig.json</code>文件，它包含了输入文件的列表和所有编译配置。</p>
+<p>文件内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;compilerOptions&quot;: &#123;</div><div class="line">        &quot;outDir&quot;: &quot;./built/&quot;,</div><div class="line">        &quot;sourceMap&quot;: true,</div><div class="line">        &quot;strict&quot;: true,</div><div class="line">        &quot;noImplicitReturns&quot;: true,</div><div class="line">        &quot;module&quot;: &quot;es2015&quot;,</div><div class="line">        &quot;moduleResolution&quot;: &quot;node&quot;,</div><div class="line">        &quot;target&quot;: &quot;es5&quot;</div><div class="line">    &#125;,</div><div class="line">    &quot;include&quot;: [</div><div class="line">        &quot;./src/**/*&quot;</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="添加-Webpack-配置文件"><a href="#添加-Webpack-配置文件" class="headerlink" title="+添加 Webpack 配置文件"></a>+添加 Webpack 配置文件</h3><p>和上个步骤类似，我们需要新建一个<code>webpack.config.js</code>文件来打包我们的项目。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line">var path = require(&apos;path&apos;)</div><div class="line">var webpack = require(&apos;webpack&apos;)</div><div class="line"></div><div class="line">module.exports = &#123;</div><div class="line">  entry: &apos;./src/index.ts&apos;,</div><div class="line">  output: &#123;</div><div class="line">    path: path.resolve(__dirname, &apos;./dist&apos;),</div><div class="line">    publicPath: &apos;/dist/&apos;,</div><div class="line">    filename: &apos;build.js&apos;</div><div class="line">  &#125;,</div><div class="line">  module: &#123;</div><div class="line">    rules: [</div><div class="line">      &#123;</div><div class="line">        test: /\.vue$/,</div><div class="line">        loader: &apos;vue-loader&apos;,</div><div class="line">        options: &#123;</div><div class="line">          loaders: &#123;</div><div class="line">            // Since sass-loader (weirdly) has SCSS as its default parse mode, we map</div><div class="line">            // the &quot;scss&quot; and &quot;sass&quot; values for the lang attribute to the right configs here.</div><div class="line">            // other preprocessors should work out of the box, no loader config like this necessary.</div><div class="line">            &apos;scss&apos;: &apos;vue-style-loader!css-loader!sass-loader&apos;,</div><div class="line">            &apos;sass&apos;: &apos;vue-style-loader!css-loader!sass-loader?indentedSyntax&apos;,</div><div class="line">          &#125;</div><div class="line">          // other vue-loader options go here</div><div class="line">        &#125;</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        test: /\.tsx?$/,</div><div class="line">        loader: &apos;ts-loader&apos;,</div><div class="line">        exclude: /node_modules/,</div><div class="line">        options: &#123;</div><div class="line">          appendTsSuffixTo: [/\.vue$/],</div><div class="line">        &#125;</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        test: /\.(png|jpg|gif|svg)$/,</div><div class="line">        loader: &apos;file-loader&apos;,</div><div class="line">        options: &#123;</div><div class="line">          name: &apos;[name].[ext]?[hash]&apos;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  resolve: &#123;</div><div class="line">    extensions: [&apos;.ts&apos;, &apos;.js&apos;, &apos;.vue&apos;, &apos;.json&apos;],</div><div class="line">    alias: &#123;</div><div class="line">      &apos;vue$&apos;: &apos;vue/dist/vue.esm.js&apos;</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  devServer: &#123;</div><div class="line">    historyApiFallback: true,</div><div class="line">    noInfo: true</div><div class="line">  &#125;,</div><div class="line">  performance: &#123;</div><div class="line">    hints: false</div><div class="line">  &#125;,</div><div class="line">  devtool: &apos;#eval-source-map&apos;</div><div class="line">&#125;</div><div class="line"></div><div class="line">if (process.env.NODE_ENV === &apos;production&apos;) &#123;</div><div class="line">  module.exports.devtool = &apos;#source-map&apos;</div><div class="line">  // http://vue-loader.vuejs.org/en/workflow/production.html</div><div class="line">  module.exports.plugins = (module.exports.plugins || []).concat([</div><div class="line">    new webpack.DefinePlugin(&#123;</div><div class="line">      &apos;process.env&apos;: &#123;</div><div class="line">        NODE_ENV: &apos;&quot;production&quot;&apos;</div><div class="line">      &#125;</div><div class="line">    &#125;),</div><div class="line">    new webpack.optimize.UglifyJsPlugin(&#123;</div><div class="line">      sourceMap: true,</div><div class="line">      compress: &#123;</div><div class="line">        warnings: false</div><div class="line">      &#125;</div><div class="line">    &#125;),</div><div class="line">    new webpack.LoaderOptionsPlugin(&#123;</div><div class="line">      minimize: true</div><div class="line">    &#125;)</div><div class="line">  ])</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="简单🌰"><a href="#简单🌰" class="headerlink" title="简单🌰"></a>简单🌰</h3><p>等了好久终于可以开始写代码啦～<br>创建<code>src/index.ts</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">// src/index.ts</div><div class="line"></div><div class="line">import Vue from &quot;vue&quot;;</div><div class="line"></div><div class="line">let v = new Vue(&#123;</div><div class="line">    el: &quot;#app&quot;,</div><div class="line">    template: `</div><div class="line">    &lt;div&gt;</div><div class="line">        &lt;div&gt;Hello &#123;&#123;name&#125;&#125;!&lt;/div&gt;</div><div class="line">        Name: &lt;input v-model=&quot;name&quot; type=&quot;text&quot;&gt;</div><div class="line">    &lt;/div&gt;`,</div><div class="line">    data: &#123;</div><div class="line">        name: &quot;World&quot;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>让我们来看看上面的代码有没有写对。在根目录下创建一个<code>index.html</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;!doctype html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;&lt;/head&gt;</div><div class="line"></div><div class="line">&lt;body&gt;</div><div class="line">    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;script src=&quot;./dist/build.js&quot;&gt;&lt;/script&gt;</div><div class="line"></div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<p>这时候执行<code>webpack</code>，然后在浏览器中打开<code>index.html</code></p>
+<p>嗯哼，看起来还不错吧～</p>
+<h3 id="组件模式🌰"><a href="#组件模式🌰" class="headerlink" title="组件模式🌰"></a>组件模式🌰</h3><p>简单🌰对于复杂业务显然不够。还好 Vue 非常灵活，它支持将应用程序分解成组件。</p>
+<p>那我们也来声明一个吧：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">// src/components/Hello.ts</div><div class="line"></div><div class="line">import Vue from &quot;vue&quot;;</div><div class="line"></div><div class="line">export default Vue.extend(&#123;</div><div class="line">    template: `</div><div class="line">        &lt;div&gt;</div><div class="line">            &lt;div&gt;Hello &#123;&#123;name&#125;&#125;&#123;&#123;exclamationMarks&#125;&#125;&lt;/div&gt;</div><div class="line">            &lt;button @click=&quot;decrement&quot;&gt;-&lt;/button&gt;</div><div class="line">            &lt;button @click=&quot;increment&quot;&gt;+&lt;/button&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">    `,</div><div class="line">    props: [&apos;name&apos;, &apos;initialEnthusiasm&apos;],</div><div class="line">    data() &#123;</div><div class="line">        return &#123;</div><div class="line">            enthusiasm: this.initialEnthusiasm,</div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    methods: &#123;</div><div class="line">        increment() &#123; this.enthusiasm++; &#125;,</div><div class="line">        decrement() &#123;</div><div class="line">            if (this.enthusiasm &gt; 1) &#123;</div><div class="line">                this.enthusiasm--;</div><div class="line">            &#125;</div><div class="line">        &#125;,</div><div class="line">    &#125;,</div><div class="line">    computed: &#123;</div><div class="line">        exclamationMarks(): string &#123;</div><div class="line">            return Array(this.enthusiasm + 1).join(&apos;!&apos;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>在<code>src/index.ts</code>引入组件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">// src/index.ts</div><div class="line"></div><div class="line">import Vue from &quot;vue&quot;;</div><div class="line">import HelloComponent from &quot;./components/Hello&quot;;</div><div class="line"></div><div class="line">let v = new Vue(&#123;</div><div class="line">    el: &quot;#app&quot;,</div><div class="line">    template: `</div><div class="line">    &lt;div&gt;</div><div class="line">        Name: &lt;input v-model=&quot;name&quot; type=&quot;text&quot;&gt;</div><div class="line">        &lt;hello-component :name=&quot;name&quot; :initialEnthusiasm=&quot;5&quot; /&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">    `,</div><div class="line">    data: &#123; name: &quot;World&quot; &#125;,</div><div class="line">    components: &#123;</div><div class="line">        HelloComponent</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h3 id="单文件组件"><a href="#单文件组件" class="headerlink" title="单文件组件"></a>单文件组件</h3><p>上面写法没有问题，但是模版一旦多了阅读起来就很麻烦，不利于团队合作开发或复杂组件维护。</p>
+<p>Vue 的<a href="https://cn.vuejs.org/v2/guide/single-file-components.html" target="_blank" rel="external">单文件组件</a>解决了很多问题。</p>
+<p>好在我们在打包配置中指定了<code>appendTsSuffixTo: [/\.vue$/]</code>，也依赖了 vue-loader。</p>
+<p>我们只需要通过<code>vue-shims.d.ts</code>文件，告诉 TypeScript 引入的<code>.vue</code>文件应该是怎样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// src/vue-shims.d.ts</div><div class="line"></div><div class="line">declare module &quot;*.vue&quot; &#123;</div><div class="line">    import Vue from &quot;vue&quot;;</div><div class="line">    export default Vue;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>接下来就可以对 Hello 组件进行改造啦！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">&lt;!-- src/components/Hello.vue --&gt;</div><div class="line"></div><div class="line">&lt;template&gt;</div><div class="line">    &lt;div&gt;</div><div class="line">        &lt;div class=&quot;greeting&quot;&gt;Hello &#123;&#123;name&#125;&#125;&#123;&#123;exclamationMarks&#125;&#125;&lt;/div&gt;</div><div class="line">        &lt;button @click=&quot;decrement&quot;&gt;-&lt;/button&gt;</div><div class="line">        &lt;button @click=&quot;increment&quot;&gt;+&lt;/button&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/template&gt;</div><div class="line"></div><div class="line">&lt;script lang=&quot;ts&quot;&gt;</div><div class="line">import Vue from &quot;vue&quot;;</div><div class="line"></div><div class="line">export default Vue.extend(&#123;</div><div class="line">    props: [&apos;name&apos;, &apos;initialEnthusiasm&apos;],</div><div class="line">    data() &#123;</div><div class="line">        return &#123;</div><div class="line">            enthusiasm: this.initialEnthusiasm,</div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    methods: &#123;</div><div class="line">        increment() &#123; this.enthusiasm++; &#125;,</div><div class="line">        decrement() &#123;</div><div class="line">            if (this.enthusiasm &gt; 1) &#123;</div><div class="line">                this.enthusiasm--;</div><div class="line">            &#125;</div><div class="line">        &#125;,</div><div class="line">    &#125;,</div><div class="line">    computed: &#123;</div><div class="line">        exclamationMarks(): string &#123;</div><div class="line">            return Array(this.enthusiasm + 1).join(&apos;!&apos;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line">&lt;/script&gt;</div><div class="line"></div><div class="line">&lt;style&gt;</div><div class="line">.greeting &#123;</div><div class="line">    font-size: 20px;</div><div class="line">&#125;</div><div class="line">&lt;/style&gt;</div></pre></td></tr></table></figure>
+<p>你可能没有注意到，我们的单文件有以下几个细节</p>
+<ul>
+<li><p>申明<code>&lt;script lang=&quot;ts&quot;&gt;</code>来写 TypeScript</p>
+</li>
+<li><p>在<code>src/index.ts</code>文件中引入组件需要加<code>.vue</code>后缀</p>
+</li>
+<li><p><code>.ts</code> 文件是不能写<code>&lt;style&gt;</code>的，但在<code>.vue</code>內可以愉快地使用独立作用域的 CSS</p>
+</li>
+<li><p>输出时调用<code>Vue.extend</code>。如果不写是不会报错，但构建会出错</p>
+</li>
+</ul>
+<h3 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h3><p>最近需要学习 TypeScript，跟着<a href="https://github.com/Microsoft/TypeScript-Vue-Starter" target="_blank" rel="external">TypeScript Vue Starter</a>开始了 Vue2.0 ＋ TypeScript 2.0 开发模式。</p>
+<p>那么，我要怎么开发一个MVC模式的单页应用呢？</p>
+<p>这时候就要 vue-router 支持啦</p>
+<p>下次讨论～</p>
+
+        </div>
+    </div>
+</article>
+
+</section>
+
+<div class="container">
+    <!-- footer money -->
+    <div class="money">
+        <button class="btn" onClick="getCoffee()">赏</button>
+        <div class="money-img">
+            <p>打赏咖啡☕️ 也请留个言🙋</p>
+            <small>
+                支付宝<br>
+                <img src="/blog/images/alipay.jpg">
+            </small>
+            <small>
+                微信<br>
+                <img src="/blog/images/weixin.jpg">
+            </small>
+        </div>
+    </div>
+
+
+    <!-- Comments -->
+    <!-- Disqus Comments -->
+
+
+<!-- youyan Comments -->
+
+<div id="uyan_frame"></div>
+<script type="text/javascript">
+  var youyan_uid = '2147554';
+  (function() {
+      var uyan = document.createElement('script');
+      uyan.type = 'text/javascript';
+      uyan.async = true;
+      uyan.src = '//v2.uyan.cc/code/uyan.js?uid=' + youyan_uid;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(uyan);
+  })();
+</script>
+
+
+</div>
+<script type="text/javascript">
+    var showImg = false;
+    var $img = document.querySelectorAll('.money-img')[0];
+    function getCoffee() {
+        ga('send', 'event', 'Button', 'getCoffee');
+        if(showImg) {
+            $img.className = 'money-img';
+            showImg = false;
+        } else {
+            $img.className = '';
+            showImg = true;
+        }
+
+    }
+</script>
+
+
+    <!-- Scripts -->
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<footer class="container site-footer">
+    <hr/>
+    © <script type="text/javascript">
+      document.write(new Date().getFullYear())
+    </script> bluesh ️🙋
+    &nbsp;&nbsp;&nbsp;
+    ｜
+    &nbsp;&nbsp;&nbsp;
+    <span id="busuanzi_container_page_pv">
+      🙈 <span id="busuanzi_value_site_pv"></span>
+    </span>
+</footer>
+
+    <!-- Google Analytics -->
+    
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("hhakCm2gE0aesc9v0pYhIVtS-gzGzoHsz", "MgRyFO87HsCVgOefQucGhyqn");</script>
+<script>
+function showTime(Counter) {
+    var query = new AV.Query(Counter);
+    document.querySelectorAll(".leancloud_visitors").forEach(function(item) {
+        console.log(item.id);
+        var url = item.id.trim();
+        query.equalTo("url", url);
+        query.find({
+            success: function(results) {
+                if (results.length == 0) {
+                    document.getElementById(url).innerHTML = 0;
+                    return;
+                }
+                for (var i = 0; i < results.length; i++) {
+                    var object = results[i];
+                    document.getElementById(url).innerHTML = object.get('time');
+                }
+            },
+            error: function(object, error) {
+                console.log("Error: " + error.code + " " + error.message);
+            }
+        });
+
+    });
+}
+
+function addCount(Counter) {
+    var Counter = AV.Object.extend("Counter");
+    url = document.querySelector(".leancloud_visitors").id.trim();
+    title = document.querySelector(".leancloud_visitors").getAttribute('data-title').trim();
+    var query = new AV.Query(Counter);
+    query.equalTo("url", url);
+    query.find({
+        success: function(results) {
+            if (results.length > 0) {
+                var counter = results[0];
+                counter.fetchWhenSave(true);
+                counter.increment("time");
+                counter.save(null, {
+                    success: function(counter) {
+                        document.getElementById(url).innerHTML = counter.get('time');
+                    },
+                    error: function(counter, error) {
+                        console.log('Failed to save Visitor num, with error message: ' + error.message);
+                    }
+                });
+            } else {
+                var newcounter = new Counter();
+                newcounter.set("title", title);
+                newcounter.set("url", url);
+                newcounter.set("time", 1);
+                newcounter.save(null, {
+                    success: function(newcounter) {
+                        console.log("newcounter.get('time')="+newcounter.get('time'));
+                        document.getElementById(url).innerHTML = newcounter.get('time');
+                    },
+                    error: function(newcounter, error) {
+                        console.log('Failed to create');
+                    }
+                });
+            }
+        },
+        error: function(error) {
+            console.log('Error:' + error.code + " " + error.message);
+        }
+    });
+}
+(function() {
+    var Counter = AV.Object.extend("Counter");
+    if (document.querySelectorAll('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+    } else if (document.querySelectorAll('.leancloud_visitors').length > 1) {
+        showTime(Counter);
+    }
+})();
+</script>
+
+
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97572000-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+</body>
+
+</html>

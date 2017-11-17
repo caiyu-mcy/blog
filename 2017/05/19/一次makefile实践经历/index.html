@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+    <!--Description-->
+    
+        <meta name="description" content="酱油前端许乐乐的博客 bluesh a Web Developer in Hangzhou Front-end 不有趣">
+    
+
+    
+      <link rel="icon" href="/blog/images/favicon.png">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="bluesh">
+    
+
+    <!-- Title -->
+    
+    <title>一次makefile实践经历 | 所以。</title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/style.css">
+
+    <!-- Custom Fonts -->
+    <script src="https://use.fontawesome.com/50e51aa126.js"></script>
+</head>
+
+
+<body>
+
+    <!-- Content -->
+    <section class="article-container">
+<!-- Back Home -->
+<a class="nav-back" href="/blog/">
+    <h1 class="title">所以。<span class="so">so</span> <span class="cursor"></span></h1>
+</a>
+
+
+<!-- Page Header -->
+<header class="intro-header">
+    <div class="container">
+        <div class="post-heading">
+            <h1>一次makefile实践经历</h1>
+
+
+            <!-- Meta -->
+            <div class="post-meta">
+                <div class="post-date">
+                    2017-05-19 20:25
+
+                    
+                        &nbsp; 🙈
+                        <span id="/blog/2017/05/19/一次makefile实践经历/" class="leancloud_visitors" data-title="一次makefile实践经历"></span>
+                    
+                </div>
+                <div class="post-tags">
+                    
+                        
+
+<a href="/blog/tags/假使要我跟你再耗个十年/">#假使要我跟你再耗个十年</a>
+
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <!-- Post Main Content -->
+        <div class="post-content">
+            <p>今天是身份证上的生日(but so what)<br>这几天看陈皓创业的视频说到：</p>
+<blockquote>
+<p>亚马逊的技术团队有两个观点，第一个观点是崇尚简化和自动化，第二个观点是运维优先，叫 operational excellence，做平台的思路。</p>
+</blockquote>
+<p>其实在写这篇之前，我一直以为他说的是工具化。就是运维有一堆的烂事情，你一定要让它变成自动化的工具，否则你可能永远深陷泥藻抽不出身。<br>每天忙得要死却不一定有什么成绩。</p>
+<p>我，一个专业的前端（笑话）！为什么要关心运维的事呢？<br>我所在的团队就是做运维工具。<br>大多数前端都会觉得做后台应用low low的。业务要接近B端用户，框架和工具也要追求最新版。<br>但是我们团队的前端框架就是维持在 Angular1.4 不能升级。<br>因为写代码的那坨人都是并不是专业的前端，他们不关心昨天淘汰了哪个框架今天webpack升到多少明天又有什么新的概念诞生。他们关心自己的业务能不能完成，以及他们会用Angular完成任务，新的框架意味着新的学习成本。<br>不是他们不愿意学习，而是时间不允许他们犯错。</p>
+<p>我的工作就是给他们提供一个简单高效低出错的前端框架。<br>开发新增一个业务模块，需要增加4个固定格式的文件，并引入申明到主模块。</p>
+<p>所以我就想到用 makefile 来自动生成这几个文件并初始化一些固定格式的内容，顺便帮他们引入到主模块。<br>这之前开发的工作是：</p>
+<ol>
+<li>拷贝粘贴一个业务文件夹</li>
+<li>重命名文件夹</li>
+<li>进入文件夹</li>
+<li>重命名文件1</li>
+<li>重命名文件2</li>
+<li>重命名文件3</li>
+<li>修改文件1</li>
+<li>修改文件2</li>
+<li>修改文件3</li>
+<li>找到index.js文件把这个新的模块引入</li>
+<li>开始写业务</li>
+</ol>
+<p>现在只需要一行命令就可以实现：<code>make init name=myProject</code></p>
+<p>且不说7，8，9这几个步骤的麻烦程度，就步骤上而言已经说明了问题。</p>
+<h3 id="How-to-do-it"><a href="#How-to-do-it" class="headerlink" title="How to do it"></a>How to do it</h3><ul>
+<li>明确 makefile 要做什么：<br>创建目录<br>创建指定名字的文件<br>修改文件内容</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">init:</div><div class="line">    @mkdir ./app/$&#123;name&#125;</div><div class="line">    @touch ./app/$&#123;name&#125;/$&#123;name&#125;.tpl.html ./app/$&#123;name&#125;/$&#123;name&#125;.module.js ./app/$&#123;name&#125;/$&#123;name&#125;.controller.js</div><div class="line">    @echo <span class="string">'controller.js'</span> &gt; ./app/$&#123;name&#125;/$&#123;name&#125;.controller.js</div><div class="line">    @echo <span class="string">'module.js'</span> &gt; ./app/$&#123;name&#125;/$&#123;name&#125;.module.js</div><div class="line">    @echo <span class="string">'tpl.html'</span> &gt; ./app/$&#123;name&#125;/$&#123;name&#125;.tpl.html</div></pre></td></tr></table></figure>
+<ul>
+<li><p><code>init:</code> 相当于是函数名，也就是一个make命令。<br>换行之后需要一个tab键，否则不认识接下来指令哦</p>
+</li>
+<li><p><code>mkdir</code>创建目录；<br>make的指令默认会在控制台中打出这条操作，相当于console.log()。<br>如果不想要，就在前面加<code>@</code>字符<br><code>${}</code>表示变量，就是<code>make init name=myProject</code>的name</p>
+</li>
+<li><p><code>touch</code>创建文件；</p>
+</li>
+<li><p><code>echo a &gt; file</code>将 a 写入 file文件 中</p>
+</li>
+</ul>
+<p><code>echo</code>相当于是完全覆盖之前的文件内容，那怎么做到在之前的文件内容上修改呢？<br>这时候就要上<code>awk</code>啦～<br>它的原理是读取这段文件，在指定地方写入内容，作为一个temp文件。最后将这个temp文件写到文件中。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">init:</div><div class="line">    @awk -v file=./pages/$&#123;name&#125;/$&#123;name&#125; <span class="string">'&#123;if ($$0 ~ "^];$$") print "    require(\"" file ".module.js\")," ; print $$0&#125;'</span> ./app/app.js &gt; <span class="regexp">/tmp/mi</span>d.js &amp;&amp; mv /tmp/mid.js ./app/app.js</div></pre></td></tr></table></figure>
+<p><code>awk</code> 学问很深，我懂的太少</p>
+
+        </div>
+    </div>
+</article>
+
+</section>
+
+<div class="container">
+    <!-- footer money -->
+    <div class="money">
+        <button class="btn" onClick="getCoffee()">赏</button>
+        <div class="money-img">
+            <p>打赏咖啡☕️ 也请留个言🙋</p>
+            <small>
+                支付宝<br>
+                <img src="/blog/images/alipay.jpg">
+            </small>
+            <small>
+                微信<br>
+                <img src="/blog/images/weixin.jpg">
+            </small>
+        </div>
+    </div>
+
+
+    <!-- Comments -->
+    <!-- Disqus Comments -->
+
+
+<!-- youyan Comments -->
+
+<div id="uyan_frame"></div>
+<script type="text/javascript">
+  var youyan_uid = '2147554';
+  (function() {
+      var uyan = document.createElement('script');
+      uyan.type = 'text/javascript';
+      uyan.async = true;
+      uyan.src = '//v2.uyan.cc/code/uyan.js?uid=' + youyan_uid;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(uyan);
+  })();
+</script>
+
+
+</div>
+<script type="text/javascript">
+    var showImg = false;
+    var $img = document.querySelectorAll('.money-img')[0];
+    function getCoffee() {
+        ga('send', 'event', 'Button', 'getCoffee');
+        if(showImg) {
+            $img.className = 'money-img';
+            showImg = false;
+        } else {
+            $img.className = '';
+            showImg = true;
+        }
+
+    }
+</script>
+
+
+    <!-- Scripts -->
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<footer class="container site-footer">
+    <hr/>
+    © <script type="text/javascript">
+      document.write(new Date().getFullYear())
+    </script> bluesh ️🙋
+    &nbsp;&nbsp;&nbsp;
+    ｜
+    &nbsp;&nbsp;&nbsp;
+    <span id="busuanzi_container_page_pv">
+      🙈 <span id="busuanzi_value_site_pv"></span>
+    </span>
+</footer>
+
+    <!-- Google Analytics -->
+    
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("hhakCm2gE0aesc9v0pYhIVtS-gzGzoHsz", "MgRyFO87HsCVgOefQucGhyqn");</script>
+<script>
+function showTime(Counter) {
+    var query = new AV.Query(Counter);
+    document.querySelectorAll(".leancloud_visitors").forEach(function(item) {
+        console.log(item.id);
+        var url = item.id.trim();
+        query.equalTo("url", url);
+        query.find({
+            success: function(results) {
+                if (results.length == 0) {
+                    document.getElementById(url).innerHTML = 0;
+                    return;
+                }
+                for (var i = 0; i < results.length; i++) {
+                    var object = results[i];
+                    document.getElementById(url).innerHTML = object.get('time');
+                }
+            },
+            error: function(object, error) {
+                console.log("Error: " + error.code + " " + error.message);
+            }
+        });
+
+    });
+}
+
+function addCount(Counter) {
+    var Counter = AV.Object.extend("Counter");
+    url = document.querySelector(".leancloud_visitors").id.trim();
+    title = document.querySelector(".leancloud_visitors").getAttribute('data-title').trim();
+    var query = new AV.Query(Counter);
+    query.equalTo("url", url);
+    query.find({
+        success: function(results) {
+            if (results.length > 0) {
+                var counter = results[0];
+                counter.fetchWhenSave(true);
+                counter.increment("time");
+                counter.save(null, {
+                    success: function(counter) {
+                        document.getElementById(url).innerHTML = counter.get('time');
+                    },
+                    error: function(counter, error) {
+                        console.log('Failed to save Visitor num, with error message: ' + error.message);
+                    }
+                });
+            } else {
+                var newcounter = new Counter();
+                newcounter.set("title", title);
+                newcounter.set("url", url);
+                newcounter.set("time", 1);
+                newcounter.save(null, {
+                    success: function(newcounter) {
+                        console.log("newcounter.get('time')="+newcounter.get('time'));
+                        document.getElementById(url).innerHTML = newcounter.get('time');
+                    },
+                    error: function(newcounter, error) {
+                        console.log('Failed to create');
+                    }
+                });
+            }
+        },
+        error: function(error) {
+            console.log('Error:' + error.code + " " + error.message);
+        }
+    });
+}
+(function() {
+    var Counter = AV.Object.extend("Counter");
+    if (document.querySelectorAll('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+    } else if (document.querySelectorAll('.leancloud_visitors').length > 1) {
+        showTime(Counter);
+    }
+})();
+</script>
+
+
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97572000-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+</body>
+
+</html>

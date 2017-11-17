@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+    <!--Description-->
+    
+        <meta name="description" content="酱油前端许乐乐的博客 bluesh a Web Developer in Hangzhou Front-end 不有趣">
+    
+
+    
+      <link rel="icon" href="/blog/images/favicon.png">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="bluesh">
+    
+
+    <!-- Title -->
+    
+    <title>以 Disqus &amp; 友言 为例给 Hexo 博客设置评论 | 所以。</title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/style.css">
+
+    <!-- Custom Fonts -->
+    <script src="https://use.fontawesome.com/50e51aa126.js"></script>
+</head>
+
+
+<body>
+
+    <!-- Content -->
+    <section class="article-container">
+<!-- Back Home -->
+<a class="nav-back" href="/blog/">
+    <h1 class="title">所以。<span class="so">so</span> <span class="cursor"></span></h1>
+</a>
+
+
+<!-- Page Header -->
+<header class="intro-header">
+    <div class="container">
+        <div class="post-heading">
+            <h1>以 Disqus & 友言 为例给 Hexo 博客设置评论</h1>
+
+
+            <!-- Meta -->
+            <div class="post-meta">
+                <div class="post-date">
+                    2017-10-31 16:18
+
+                    
+                        &nbsp; 🙈
+                        <span id="/blog/2017/10/31/add-comment/" class="leancloud_visitors" data-title="以 Disqus &amp; 友言 为例给 Hexo 博客设置评论"></span>
+                    
+                </div>
+                <div class="post-tags">
+                    
+                        
+
+<a href="/blog/tags/bluesh/">#bluesh</a> <a href="/blog/tags/假使要我跟你再耗个十年/">#假使要我跟你再耗个十年</a>
+
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <!-- Post Main Content -->
+        <div class="post-content">
+            <p>一开始用的 Disqus 评论但是只能翻wall访问<br>后因为有人发gmail邮件问问题，因为我太少查看邮件了大概延迟了一个月，也就没有帮到这位朋友<br>想着如果有包容一点的评论也许会回复及时一点，所以换了lowlow的友言<br>之前在推上也有人问怎么加的 Disqus 评论今天也一并记录一下：</p>
+<h3 id="友言评论"><a href="#友言评论" class="headerlink" title="友言评论"></a>友言评论</h3><ol>
+<li>注册<a href="http://www.uyan.cc/" target="_blank" rel="external">友言</a></li>
+<li><p>如果你用的 Hexo 主题支持友言评论的话，只需要进入友言的<strong>后台管理</strong>拷贝用户ID粘贴到👇<br>路径<code>themes/yourtheme/_config.yml</code></p>
+<img src="/blog/images/blog/2017/1031-1.png">
+</li>
+<li><p>如果主题配置不支持，就自己添加<code>youyan_uid: yourid</code>配置<br>然后找到主题文件下的<code>comment.ejs</code>文件，拷贝代码👇</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;!-- youyan Comments --&gt;</div><div class="line">&lt;% if (theme.comments &amp;&amp; theme.comments.youyan_uid)&#123; %&gt;</div><div class="line">&lt;div id="uyan_frame"&gt;&lt;/div&gt;</div><div class="line">&lt;script type="text/javascript"&gt;</div><div class="line">  var youyan_uid = '&lt;%= theme.comments.youyan_uid %&gt;';</div><div class="line">  (function() &#123;</div><div class="line">      var uyan = document.createElement('script');</div><div class="line">      uyan.type = 'text/javascript';</div><div class="line">      uyan.async = true;</div><div class="line">      uyan.src = '//v2.uyan.cc/code/uyan.js?uid=' + youyan_uid;</div><div class="line">      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(uyan);</div><div class="line">  &#125;)();</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;% &#125; %&gt;</div></pre></td></tr></table></figure>
+<p>完成✅</p>
+<h3 id="Disqus-评论"><a href="#Disqus-评论" class="headerlink" title="Disqus 评论"></a>Disqus 评论</h3><ol>
+<li>注册<a href="https://disqus.com/" target="_blank" rel="external">Disqus</a> (我电脑已经访问不了了)</li>
+<li>如果主题支持 Disqus 评论的话，只需要给<code>disqus_shortname</code>填上你的 Disqus 用户名</li>
+<li>如果主题不支持，加上<code>disqus_shortname: your_disqus_shortname</code>，并找到<code>comment.ejs</code>文件，拷贝代码👇</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;!-- Disqus Comments --&gt;</div><div class="line">&lt;% if (theme.comments &amp;&amp; theme.comments.disqus_shortname)&#123; %&gt;</div><div class="line">&lt;div id="disqus_thread" class="comment"&gt;&lt;/div&gt;</div><div class="line">&lt;script type="text/javascript"&gt;</div><div class="line">  /* * * CONFIGURATION VARIABLES * * */</div><div class="line">  var disqus_shortname = '&lt;%= theme.comments.disqus_shortname %&gt;';</div><div class="line"></div><div class="line">  /* * * DON'T EDIT BELOW THIS LINE * * */</div><div class="line">  (function() &#123;</div><div class="line">      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;</div><div class="line">      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';</div><div class="line">      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);</div><div class="line">  &#125;)();</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;% &#125; %&gt;</div></pre></td></tr></table></figure>
+<p>完成✅</p>
+<!-- 可能有些人的主题里是没有`comment.ejs`文件的，那这段代码就应该放在文章`article-full.ejs`的底部 -->
+<p>心酸的是上线到现在都没有人评论过诶，希望大家多多留言多多交流啦<br>p.s. 今天超级想改主题的</p>
+
+        </div>
+    </div>
+</article>
+
+</section>
+
+<div class="container">
+    <!-- footer money -->
+    <div class="money">
+        <button class="btn" onClick="getCoffee()">赏</button>
+        <div class="money-img">
+            <p>打赏咖啡☕️ 也请留个言🙋</p>
+            <small>
+                支付宝<br>
+                <img src="/blog/images/alipay.jpg">
+            </small>
+            <small>
+                微信<br>
+                <img src="/blog/images/weixin.jpg">
+            </small>
+        </div>
+    </div>
+
+
+    <!-- Comments -->
+    <!-- Disqus Comments -->
+
+
+<!-- youyan Comments -->
+
+<div id="uyan_frame"></div>
+<script type="text/javascript">
+  var youyan_uid = '2147554';
+  (function() {
+      var uyan = document.createElement('script');
+      uyan.type = 'text/javascript';
+      uyan.async = true;
+      uyan.src = '//v2.uyan.cc/code/uyan.js?uid=' + youyan_uid;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(uyan);
+  })();
+</script>
+
+
+</div>
+<script type="text/javascript">
+    var showImg = false;
+    var $img = document.querySelectorAll('.money-img')[0];
+    function getCoffee() {
+        ga('send', 'event', 'Button', 'getCoffee');
+        if(showImg) {
+            $img.className = 'money-img';
+            showImg = false;
+        } else {
+            $img.className = '';
+            showImg = true;
+        }
+
+    }
+</script>
+
+
+    <!-- Scripts -->
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<footer class="container site-footer">
+    <hr/>
+    © <script type="text/javascript">
+      document.write(new Date().getFullYear())
+    </script> bluesh ️🙋
+    &nbsp;&nbsp;&nbsp;
+    ｜
+    &nbsp;&nbsp;&nbsp;
+    <span id="busuanzi_container_page_pv">
+      🙈 <span id="busuanzi_value_site_pv"></span>
+    </span>
+</footer>
+
+    <!-- Google Analytics -->
+    
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("hhakCm2gE0aesc9v0pYhIVtS-gzGzoHsz", "MgRyFO87HsCVgOefQucGhyqn");</script>
+<script>
+function showTime(Counter) {
+    var query = new AV.Query(Counter);
+    document.querySelectorAll(".leancloud_visitors").forEach(function(item) {
+        console.log(item.id);
+        var url = item.id.trim();
+        query.equalTo("url", url);
+        query.find({
+            success: function(results) {
+                if (results.length == 0) {
+                    document.getElementById(url).innerHTML = 0;
+                    return;
+                }
+                for (var i = 0; i < results.length; i++) {
+                    var object = results[i];
+                    document.getElementById(url).innerHTML = object.get('time');
+                }
+            },
+            error: function(object, error) {
+                console.log("Error: " + error.code + " " + error.message);
+            }
+        });
+
+    });
+}
+
+function addCount(Counter) {
+    var Counter = AV.Object.extend("Counter");
+    url = document.querySelector(".leancloud_visitors").id.trim();
+    title = document.querySelector(".leancloud_visitors").getAttribute('data-title').trim();
+    var query = new AV.Query(Counter);
+    query.equalTo("url", url);
+    query.find({
+        success: function(results) {
+            if (results.length > 0) {
+                var counter = results[0];
+                counter.fetchWhenSave(true);
+                counter.increment("time");
+                counter.save(null, {
+                    success: function(counter) {
+                        document.getElementById(url).innerHTML = counter.get('time');
+                    },
+                    error: function(counter, error) {
+                        console.log('Failed to save Visitor num, with error message: ' + error.message);
+                    }
+                });
+            } else {
+                var newcounter = new Counter();
+                newcounter.set("title", title);
+                newcounter.set("url", url);
+                newcounter.set("time", 1);
+                newcounter.save(null, {
+                    success: function(newcounter) {
+                        console.log("newcounter.get('time')="+newcounter.get('time'));
+                        document.getElementById(url).innerHTML = newcounter.get('time');
+                    },
+                    error: function(newcounter, error) {
+                        console.log('Failed to create');
+                    }
+                });
+            }
+        },
+        error: function(error) {
+            console.log('Error:' + error.code + " " + error.message);
+        }
+    });
+}
+(function() {
+    var Counter = AV.Object.extend("Counter");
+    if (document.querySelectorAll('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+    } else if (document.querySelectorAll('.leancloud_visitors').length > 1) {
+        showTime(Counter);
+    }
+})();
+</script>
+
+
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97572000-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+</body>
+
+</html>
