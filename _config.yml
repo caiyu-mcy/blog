@@ -1,8 +1,8 @@
 # Site
-title: 所以。
+title: ALEVEN.SH
 subtitle: 一个酱油前端的心路历程
-description: 酱油前端许乐乐的博客 bluesh a Web Developer in Hangzhou Front-end 不有趣
-author: bluesh
+description: 酱油前端许乐乐的博客 bluesh Aleven a Web Developer in Hangzhou Front-end 不有趣
+author: ALEVEN.SH
 
 # URL
 # url: http://www.bluesh.me
@@ -56,7 +56,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: bluesh
+theme: curry
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
