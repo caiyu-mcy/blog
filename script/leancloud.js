@@ -4,9 +4,8 @@ function showTime(Counter) {
     query.find().then(function (results) {
         results.map(object => {
             let DOM = document.getElementById(object.get('url'));
-            let time = object.get('time');
             if(DOM) {
-                DOM.innerHTML = '已读：'+object.get('time')
+                DOM.innerHTML = '已读：' + object.get('time')
             }
         })
     })
