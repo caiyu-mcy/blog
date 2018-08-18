@@ -3,7 +3,7 @@ title: 好像没有然后了
 date: 2013-10-12 21:51
 tags:
 - 来来来喝完这杯还有三杯
-- bluesh
+- BLUESH
 ---
 tags: `随便`
 <br>
@@ -18,7 +18,7 @@ tags: `随便`
 
 *  技术－[假使要我跟你再耗个十年](/blog/tags/假使要我跟你再耗个十年/)
 
-*  博客制作－[bluesh](/blog/tags/bluesh/)
+*  博客制作－[BLUESH](/blog/tags/BLUESH/)
 
 *  自我碎碎念－[来来来喝完这杯还有三杯](/blog/tags/来来来喝完这杯还有三杯/)
 

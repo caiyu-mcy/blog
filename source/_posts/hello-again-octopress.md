@@ -4,7 +4,7 @@ title: Hello Again!Octopress
 date: 2013-10-10 20:45
 tags:
 - 假使要我跟你再耗个十年
-- bluesh
+- BLUESH
 ---
 tags: `折腾` `octopress`
 <br>

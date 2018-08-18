@@ -3,7 +3,7 @@ title: 基于 LeanCloud 平台 为 Hexo 博客添加文章阅读量
 date: 2017-06-21 14:58:23
 tags:
 - 假使要我跟你再耗个十年
-- bluesh
+- BLUESH
 ---
 我自己经常会到 Google Analytics 后台看网站的访问数据，最近特别关心文章的阅读量。
 
@@ -48,7 +48,7 @@ leancloud_visitors:
 
 找到 `google-anaytics.ejs` 文件，加入以下代码（因为这类都是统计SDK，可以放在一起，
 洁癖人士可以新建一个文件）：
-```
+```javascript
 <% if (theme.leancloud_visitors.enable){ %>
 <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
 <script>AV.initialize("<%= theme.leancloud_visitors.app_id %>", "<%= theme.leancloud_visitors.app_key %>");</script>

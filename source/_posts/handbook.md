@@ -4,7 +4,7 @@ title: 爱整理的都是好姑凉
 date: 2013-10-15 20:20
 tags:
 - 假使要我跟你再耗个十年
-- bluesh
+- BLUESH
 ---
 tags: `手册`
 <br>
