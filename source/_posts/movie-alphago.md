@@ -1,7 +1,7 @@
 ---
 title: 保持自我，享受比赛
 date: 2018-04-22 00:27:12
-tags: 来来来喝完这杯还有三杯
+tags: 2046
 ---
 {% img https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2515332442.webp %}
 

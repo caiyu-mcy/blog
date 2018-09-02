@@ -1,7 +1,7 @@
 ---
 title: 谁还不是loser
 date: 2018-05-14 18:58:03
-tags: 来来来喝完这杯还有三杯
+tags: 2046
 ---
 {% img https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2505928032.webp %}
 

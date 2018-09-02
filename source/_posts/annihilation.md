@@ -1,7 +1,7 @@
 ---
 title: 重要的不是导演想说什么，而是你思考了什么
 date: 2018-04-19 23:11:07
-tags: 来来来喝完这杯还有三杯
+tags: 2046
 ---
 {% img https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2516914607.webp %}
 
