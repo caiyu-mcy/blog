@@ -46,6 +46,7 @@
   // Avatar
   var $mask = $('.about-me-mask');
   $('.avatar').on('click', function () {
+    ga('send', 'event', 'AboutMe', 'aboutMe');
     if (!$mask.hasClass('open')) {
       $mask.addClass('open');
     }
@@ -60,7 +61,7 @@
   // Coffee
   var $coffeeMask = $('.coffee-mask');
   $('.coffee').on('click', function () {
-    ga('send', 'event', 'Button', 'getCoffee');
+    ga('send', 'event', 'GetCoffee', 'getCoffee');
     if (!$coffeeMask.hasClass('open')) {
       $coffeeMask.addClass('open');
     }
