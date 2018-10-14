@@ -5,6 +5,13 @@
   "hexo": {
     "version": "3.3.1"
   },
+  "yuqueConfig": {
+    "baseUrl": "https://www.yuque.com/api/v2",
+    "login": "leshiyi",
+    "repo": "diary",
+    "mdNameFormat": "title",
+    "postPath": "source/_posts/yuque"
+  },
   "dependencies": {
     "hexo": "^3.2.0",
     "hexo-deployer-git": "^0.2.0",
